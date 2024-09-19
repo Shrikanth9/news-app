@@ -1,3 +1,4 @@
+import MainHeader from "@/components/main-header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -26,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <div id="page">
+        <MainHeader />
         {children}
+        </div> 
       </body>
     </html>
   );
