@@ -3,9 +3,10 @@ import NewsList from "@/lib/news-list";
 import Link from "next/link";
 
 export default function FilteredNewsPage({ params }: any) {
-    let links = getAvailableNewsYears();
-    const year = params.filter?.[0];
-    const month = params.filter?.[1];
+    let links: number[] = getAvailableNewsYears();
+    const year: string = params.filter?.[0];
+    const month: string = params.filter?.[1];
+    
 
     console.log(params.filter)
 
@@ -25,6 +26,11 @@ export default function FilteredNewsPage({ params }: any) {
 
     if(news && news.length > 0) {
         newsContent = <NewsList news={news} />
+    }
+
+    if((year && !getAvailableNewsYears().includes(+year as never)) || 
+        (month && !getAvailableNewsMonths(year).includes(+month as never))) {
+        throw new Error('Invalid filter');
     }
 
     return (
