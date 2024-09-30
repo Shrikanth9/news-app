@@ -1,6 +1,12 @@
 import { DUMMY_NEWS } from "@/dummy-news";
 import { notFound } from "next/navigation";
 
+export function generateStaticParams() {
+    return DUMMY_NEWS.map((news: any) => ({
+        slug: news.slug
+    }));
+}
+
 export default function NewsDetailPage( { params }: any) {
     const paramSlug = params.slug;
     const newsItem = DUMMY_NEWS.find((news: any) => news.slug === paramSlug);
